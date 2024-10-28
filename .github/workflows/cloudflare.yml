@@ -5,9 +5,6 @@ on:
       - main
   workflow_dispatch:
 
-env:
-  DATABASE_URL: "http://127.0.0.1:8080"
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,29 +19,26 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.6'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@familyallovertheworld'
+          node-version: '22.10'
 
-      - name: Creating .npmrc
-        run: |
-          echo "@familyallovertheworld:registry=https://npm.pkg.github.com" >> .npmrc
-          echo "@faotw:registry=https://npm.pkg.github.com" >> .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Install Dependencies
-        run: npm ci
+        run: pnpm i
 
       - name: Build
-        run: "npm run pages:build"
+        run: pnpm run build
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: brain-familyalloverthe-world
-          directory: ".vercel/output/static"
+          projectName: jorgechato-com
+          directory: "build"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: main
           wranglerVersion: '3'
