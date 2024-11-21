@@ -13,7 +13,7 @@ export default function Index() {
       <div className='flex flex-col items-center gap-16'>
         <header className='flex flex-col items-center gap-9'>
           <h1 className='leading text-2xl font-bold text-zinc-800 dark:text-zinc-100'>
-            Welcome to Jorge Chato Astrain
+            How to work with me
           </h1>
           <h2 className='text-lg text-zinc-500 dark:text-zinc-400'>
             Work in progress
