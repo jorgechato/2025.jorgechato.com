@@ -12,8 +12,8 @@ importers:
         specifier: ^8.17.10
         version: 8.17.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(three@0.171.0)
       '@remix-run/cloudflare':
-        specifier: ^2.13.1
-        version: 2.13.1(@cloudflare/workers-types@4.20241022.0)(typescript@5.7.2)
+        specifier: ^2.15.3
+        version: 2.15.3(@cloudflare/workers-types@4.20241022.0)(typescript@5.7.2)
       '@remix-run/cloudflare-pages':
         specifier: ^2.15.0
         version: 2.15.0(@cloudflare/workers-types@4.20241022.0)(typescript@5.7.2)
@@ -859,8 +859,8 @@ packages:
       typescript:
         optional: true
 
-  '@remix-run/cloudflare@2.13.1':
-    resolution: {integrity: sha512-+Xiy2ypFIm+IxNiPuXQzIfW/3RWLT5i1ZrgLsc/cMb4dp2BK7/o+iqTYwXze0t4XSPd5KuZn+yWquOwZhfg30g==}
+  '@remix-run/cloudflare@2.15.0':
+    resolution: {integrity: sha512-X8Z3EDdlh/8Gjpu27gnJenN06Q9BtkxMEFt5op3y/qahCt0FH9A64DZQ5N47+WnFhySy6mOpzFwCAzPmGIuIeQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@cloudflare/workers-types': ^4.0.0
@@ -869,8 +869,8 @@ packages:
       typescript:
         optional: true
 
-  '@remix-run/cloudflare@2.15.0':
-    resolution: {integrity: sha512-X8Z3EDdlh/8Gjpu27gnJenN06Q9BtkxMEFt5op3y/qahCt0FH9A64DZQ5N47+WnFhySy6mOpzFwCAzPmGIuIeQ==}
+  '@remix-run/cloudflare@2.15.3':
+    resolution: {integrity: sha512-L5O+ejspTcAffp979BwE2tDR1KkMblYiCjV87hfjYu1ktjWCLXcizeiOl65msljOE8yrMcF+cGzl75QQGw753w==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@cloudflare/workers-types': ^4.0.0
@@ -927,6 +927,10 @@ packages:
     resolution: {integrity: sha512-xfSkCAchbdG5PnbrKqFWwia4Bi61nH+wm8wLEqfHDyp7Y3dZzgqS2itV8i4gAq9pC2HsTpwyBC6Ds8VHZ96JlA==}
     engines: {node: '>=14.0.0'}
 
+  '@remix-run/router@1.22.0':
+    resolution: {integrity: sha512-MBOl8MeOzpK0HQQQshKB7pABXbmyHizdTpqnrIseTbsv0nAepwC2ENZa1aaBExNQcpLoXmWthhak8SABLzvGPw==}
+    engines: {node: '>=14.0.0'}
+
   '@remix-run/server-runtime@2.13.1':
     resolution: {integrity: sha512-2DfBPRcHKVzE4bCNsNkKB50BhCCKF73x+jiS836OyxSIAL+x0tguV2AEjmGXefEXc5AGGzoxkus0AUUEYa29Vg==}
     engines: {node: '>=18.0.0'}
@@ -938,6 +942,15 @@ packages:
 
   '@remix-run/server-runtime@2.15.0':
     resolution: {integrity: sha512-FuM8vAg1sPskf4wn0ivbuj/7s9Qdh2wnKu+sVXqYz0a95gH5b73TuMzk6n3NMSkFVKKc6+UmlG1WLYre7L2LTg==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      typescript: ^5.1.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
+  '@remix-run/server-runtime@2.15.3':
+    resolution: {integrity: sha512-taHBe1DEqxZNjjj6OfkSYbup+sZPjbTgUhykaI+nHqrC2NDQuTiisBXhLwtx60GctONR/x0lWhF7R9ZGC5WsHw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       typescript: ^5.1.0
@@ -4583,19 +4596,19 @@ snapshots:
     optionalDependencies:
       typescript: 5.7.2
 
-  '@remix-run/cloudflare@2.13.1(@cloudflare/workers-types@4.20241022.0)(typescript@5.7.2)':
-    dependencies:
-      '@cloudflare/kv-asset-handler': 0.1.3
-      '@cloudflare/workers-types': 4.20241022.0
-      '@remix-run/server-runtime': 2.13.1(typescript@5.7.2)
-    optionalDependencies:
-      typescript: 5.7.2
-
   '@remix-run/cloudflare@2.15.0(@cloudflare/workers-types@4.20241022.0)(typescript@5.7.2)':
     dependencies:
       '@cloudflare/kv-asset-handler': 0.1.3
       '@cloudflare/workers-types': 4.20241022.0
       '@remix-run/server-runtime': 2.15.0(typescript@5.7.2)
+    optionalDependencies:
+      typescript: 5.7.2
+
+  '@remix-run/cloudflare@2.15.3(@cloudflare/workers-types@4.20241022.0)(typescript@5.7.2)':
+    dependencies:
+      '@cloudflare/kv-asset-handler': 0.1.3
+      '@cloudflare/workers-types': 4.20241022.0
+      '@remix-run/server-runtime': 2.15.3(typescript@5.7.2)
     optionalDependencies:
       typescript: 5.7.2
 
@@ -4703,6 +4716,8 @@ snapshots:
 
   '@remix-run/router@1.21.0': {}
 
+  '@remix-run/router@1.22.0': {}
+
   '@remix-run/server-runtime@2.13.1(typescript@5.7.2)':
     dependencies:
       '@remix-run/router': 1.20.0
@@ -4718,6 +4733,18 @@ snapshots:
   '@remix-run/server-runtime@2.15.0(typescript@5.7.2)':
     dependencies:
       '@remix-run/router': 1.21.0
+      '@types/cookie': 0.6.0
+      '@web3-storage/multipart-parser': 1.0.0
+      cookie: 0.6.0
+      set-cookie-parser: 2.7.1
+      source-map: 0.7.4
+      turbo-stream: 2.4.0
+    optionalDependencies:
+      typescript: 5.7.2
+
+  '@remix-run/server-runtime@2.15.3(typescript@5.7.2)':
+    dependencies:
+      '@remix-run/router': 1.22.0
       '@types/cookie': 0.6.0
       '@web3-storage/multipart-parser': 1.0.0
       cookie: 0.6.0
