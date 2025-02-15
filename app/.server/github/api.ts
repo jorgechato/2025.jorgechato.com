@@ -1,4 +1,4 @@
-type Gist = {
+interface Gist {
   data: {
     user: {
       gist: {
@@ -8,18 +8,18 @@ type Gist = {
       };
     };
   };
-};
+}
 
 export async function Gist(
   user: string,
   id: string,
-  filePosition: number = 0
+  filePosition: number = 0,
 ): Promise<string> {
   const res = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
+      'Authorization': `bearer ${process.env.GITHUB_TOKEN}`,
     },
     body: JSON.stringify({
       query: `
