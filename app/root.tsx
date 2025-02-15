@@ -1,4 +1,5 @@
 import type { LinksFunction } from '@remix-run/cloudflare';
+import { ThemeProvider } from '@/components/core/ThemeProvider';
 import {
   Links,
   Meta,
@@ -21,7 +22,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
