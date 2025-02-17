@@ -13,15 +13,16 @@ export const meta: MetaFunction = () => {
 };
 
 export async function loader({ context }: LoaderFunctionArgs) {
-  const res = await fetch('https://api.github.com/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      // eslint-disable-next-line node/prefer-global/process
-      'Authorization': `bearer ${context.cloudflare.env.GITHUB_TOKEN || process.env.GITHUB_TOKEN}`,
-    },
-    body: JSON.stringify({
-      query: `
+  try {
+    const res = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // eslint-disable-next-line node/prefer-global/process
+        'Authorization': `bearer ${context.cloudflare.env.GITHUB_TOKEN || process.env.GITHUB_TOKEN}`,
+      },
+      body: JSON.stringify({
+        query: `
         query {
           user(login: "${context.cloudflare.env.GITHUB_OWNER || process.env.GITHUB_OWNER}") {
             gist(name: "${context.cloudflare.env.GITHUB_GIST || process.env.GITHUB_GIST}") {
@@ -32,15 +33,15 @@ export async function loader({ context }: LoaderFunctionArgs) {
           }
         }
       `,
-    }),
-  });
+      }),
+    });
 
-  if (!res.ok) {
+    const body: Gist = await res.json();
+    return body.data.user.gist.files[0].text;
+  }
+  catch {
     return '';
   }
-
-  const body: Gist = await res.json();
-  return body.data.user.gist.files[0].text;
 }
 
 export default function Index() {

@@ -1,4 +1,4 @@
-import { Link, NavLink } from '@remix-run/react';
+import { NavLink } from '@remix-run/react';
 import { Menu, X } from 'lucide-react';
 import { getSiteMap, getSNS, Profile } from '~/utils/content';
 
