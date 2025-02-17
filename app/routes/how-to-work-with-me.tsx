@@ -1,9 +1,10 @@
 import type { MetaFunction } from '@remix-run/cloudflare';
+import { Profile } from '~/utils/content';
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'Jorge' },
-    { name: 'description', content: 'Entry point for my projects and ideas.' },
+    { title: `How to work with ${Profile.HEADER}` },
+    { name: 'description', content: 'Key points to have a clear understanding of how to work with me.' },
   ];
 };
 
@@ -15,9 +16,6 @@ export default function Index() {
           <h1 className="leading text-2xl font-bold text-zinc-800 dark:text-zinc-100">
             How to work with me
           </h1>
-          <h2 className="text-lg text-zinc-500 dark:text-zinc-400">
-            Work in progress
-          </h2>
         </header>
       </div>
     </div>

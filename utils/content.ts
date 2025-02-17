@@ -1,4 +1,5 @@
 import type { LinkType, SnSType } from '~/utils/helper';
+import locations from '~/content/locations.json';
 import menu from '~/content/menu.json';
 import profile from '~/content/profile.json';
 import sns from '~/content/sns.json';
@@ -31,3 +32,4 @@ export function getSiteMap(inHeader?: boolean): LinkType[] {
 export const SnS: LinkType[] = sns;
 export const SiteMap: LinkType[] = menu;
 export const Profile = profile;
+export const ThumbnailLocations: Record<string, string> = locations;

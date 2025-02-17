@@ -3,5 +3,15 @@
     "name": "Home",
     "url": "/",
     "inHeader": false
+  },
+  {
+    "name": "How",
+    "url": "/how-to-work-with-me",
+    "inHeader": true
+  },
+  {
+    "name": "Where",
+    "url": "/where-i-am-today",
+    "inHeader": true
   }
 ]
