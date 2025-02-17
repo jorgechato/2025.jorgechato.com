@@ -1,4 +1,5 @@
 import type { MetaFunction } from '@remix-run/cloudflare';
+import type { LoaderFunctionArgs } from '@remix-run/node';
 import type { Gist } from '~/utils/api';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { useLoaderData } from '@remix-run/react';
@@ -11,19 +12,18 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader() {
+export async function loader({ context }: LoaderFunctionArgs) {
   const res = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      // eslint-disable-next-line node/prefer-global/process
-      'Authorization': `bearer ${process.env.GITHUB_TOKEN}`,
+      'Authorization': `bearer ${context.cloudflare.env.GITHUB_TOKEN}`,
     },
     body: JSON.stringify({
       query: `
         query {
-          user(login: "${process.env.GITHUB_OWNER}") {
-            gist(name: "${process.env.GITHUB_GIST}") {
+          user(login: "${context.cloudflare.env.GITHUB_OWNER}") {
+            gist(name: "${context.cloudflare.env.GITHUB_GIST}") {
               files {
                 text
               }

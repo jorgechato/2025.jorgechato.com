@@ -1,4 +1,4 @@
-import type { MetaFunction } from '@remix-run/cloudflare';
+import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
 import type { TravelData } from '~/utils/api';
 import type { Location, NomadList } from '~/utils/schema';
 import LocationSection from '@/components/location/Location';
@@ -48,10 +48,9 @@ function nomadLocationToLocation(nomadLocation: any, thumbnailOverwrite: Record<
   } as Location;
 }
 
-export async function loader() {
+export async function loader({ context }: LoaderFunctionArgs) {
   try {
-    // eslint-disable-next-line node/prefer-global/process
-    const response = await fetch(`https://nomads.com/@${process.env.NOMADLIST_USERNAME}.json?key=${process.env.NOMADLIST_KEY}`);
+    const response = await fetch(`https://nomads.com/@${context.cloudflare.env.NOMADLIST_USERNAME}.json?key=${context.cloudflare.env.NOMADLIST_KEY}`);
     const data: TravelData = await response.json();
     const thumbnailOverwrite: Record<string, string> = ThumbnailLocations;
 
