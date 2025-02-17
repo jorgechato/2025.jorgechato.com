@@ -39,8 +39,8 @@ export async function loader({ context }: LoaderFunctionArgs) {
     const body: Gist = await res.json();
     return body.data.user.gist.files[0].text;
   }
-  catch {
-    return '';
+  catch (error) {
+    return error;
   }
 }
 
