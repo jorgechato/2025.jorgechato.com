@@ -1,6 +1,4 @@
 import type { MetaFunction } from '@remix-run/cloudflare';
-import { readFile } from 'node:fs/promises';
-import path from 'node:path';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { useLoaderData } from '@remix-run/react';
 import { Profile } from '~/utils/content';
@@ -14,8 +12,8 @@ export const meta: MetaFunction = () => {
 
 export async function loader() {
   try {
-    const filePath = path.resolve('content', 'how-to-work-with-me.md');
-    const content = await readFile(filePath, 'utf-8');
+    const response = await fetch('https://gist.githubusercontent.com/jorgechato/7ac38bc8be549240ff1835f83cc74adf/raw');
+    const content = await response.text();
     return content;
   }
   catch {
