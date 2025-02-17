@@ -1,14 +1,14 @@
-import type { MenuType, RichSnSType, SnSType } from '~/utils/helper';
+import type { LinkType, SnSType } from '~/utils/helper';
 import menu from '~/content/menu.json';
 import profile from '~/content/profile.json';
 import sns from '~/content/sns.json';
 import { SOCIAL_MEDIA } from '~/utils/helper';
 
-export function getSNS(inHeader?: boolean): RichSnSType[] {
-  let snsList: SnSType[] = sns;
+export function getSNS(inHeader?: boolean): SnSType[] {
+  let snsList: LinkType[] = sns;
 
   if (inHeader !== undefined) {
-    snsList = sns.filter((item: SnSType) => item.inHeader === inHeader);
+    snsList = sns.filter((item: LinkType) => item.inHeader === inHeader);
   }
 
   return snsList
@@ -18,13 +18,16 @@ export function getSNS(inHeader?: boolean): RichSnSType[] {
     }));
 }
 
-export function getNavItems(): MenuType[] {
-  return [
-    ...menu,
-    ...sns.filter((item: SnSType) => item.inHeader),
-  ] as MenuType[];
+export function getSiteMap(inHeader?: boolean): LinkType[] {
+  let menuList: LinkType[] = menu;
+
+  if (inHeader !== undefined) {
+    menuList = menu.filter((item: LinkType) => item.inHeader === inHeader);
+  }
+
+  return menuList as LinkType[];
 }
 
-export const SnS: SnSType[] = sns;
-export const SiteMap: MenuType[] = menu;
+export const SnS: LinkType[] = sns;
+export const SiteMap: LinkType[] = menu;
 export const Profile = profile;

@@ -7,17 +7,12 @@ export const SOCIAL_MEDIA: Record<string, typeof Newspaper> = {
   substack: Newspaper,
 };
 
-export interface MenuType {
-  name: string;
-  url: string;
-}
-
-export interface SnSType {
+export interface LinkType {
   name: string;
   url: string;
   inHeader: boolean;
 }
 
-export interface RichSnSType extends SnSType {
+export interface SnSType extends LinkType {
   icon: typeof Newspaper;
 }

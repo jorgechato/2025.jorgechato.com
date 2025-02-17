@@ -1,6 +1,6 @@
 import { Link, NavLink } from '@remix-run/react';
 import { Menu, X } from 'lucide-react';
-import { getSNS, Profile, SiteMap } from '~/utils/content';
+import { getSiteMap, getSNS, Profile } from '~/utils/content';
 
 export default function NavBar() {
   return (
@@ -10,7 +10,7 @@ export default function NavBar() {
           to="/"
           className="relative z-10 flex items-center gap-4 flex-row"
         >
-          <img src="/favicon.webp" loading="lazy" className="w-6" alt="Logo" />
+          <img src="/logo.webp" loading="lazy" className="w-5" alt="Logo" />
           <h2 className="text-xl font-bold">
             { Profile.HEADER }
           </h2>
@@ -20,7 +20,7 @@ export default function NavBar() {
           className="fixed w-full h-dvh inset-0 bg-white md:text-md lg:text-md flex flex-col items-center justify-center
             lg:justify-end md:justify-end gap-2 md:gap-8 -translate-y-full transition-transform duration-300 target:translate-y-0 md:static md:h-[initial] md:bg-[initial] md:flex-row md:translate-y-[initial]"
         >
-          {SiteMap.map(item => (
+          {getSiteMap(true).map(item => (
             <NavLink
               key={item.name}
               className="hover:opacity-100 transition-opacity duration-300 cursor-pointer font-semibold"
