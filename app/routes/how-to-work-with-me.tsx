@@ -17,13 +17,14 @@ export async function loader({ context }: LoaderFunctionArgs) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `bearer ${context.cloudflare.env.GITHUB_TOKEN}`,
+      // eslint-disable-next-line node/prefer-global/process
+      'Authorization': `bearer ${context.cloudflare.env.GITHUB_TOKEN || process.env.GITHUB_TOKEN}`,
     },
     body: JSON.stringify({
       query: `
         query {
-          user(login: "${context.cloudflare.env.GITHUB_OWNER}") {
-            gist(name: "${context.cloudflare.env.GITHUB_GIST}") {
+          user(login: "${context.cloudflare.env.GITHUB_OWNER || process.env.GITHUB_OWNER}") {
+            gist(name: "${context.cloudflare.env.GITHUB_GIST || process.env.GITHUB_GIST}") {
               files {
                 text
               }

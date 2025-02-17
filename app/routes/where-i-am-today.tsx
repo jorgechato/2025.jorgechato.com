@@ -50,7 +50,8 @@ function nomadLocationToLocation(nomadLocation: any, thumbnailOverwrite: Record<
 
 export async function loader({ context }: LoaderFunctionArgs) {
   try {
-    const response = await fetch(`https://nomads.com/@${context.cloudflare.env.NOMADLIST_USERNAME}.json?key=${context.cloudflare.env.NOMADLIST_KEY}`);
+    // eslint-disable-next-line node/prefer-global/process
+    const response = await fetch(`https://nomads.com/@${context.cloudflare.env.NOMADLIST_USERNAME || process.env.NOMADLIST_USERNAME}.json?key=${context.cloudflare.env.NOMADLIST_KEY || process.env.NOMADLIST_KEY}`);
     const data: TravelData = await response.json();
     const thumbnailOverwrite: Record<string, string> = ThumbnailLocations;
 
