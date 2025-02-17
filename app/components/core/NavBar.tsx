@@ -39,11 +39,11 @@ export default function NavBar() {
               <item.icon />
             </NavLink>
           ))}
-          <Link to="#header-nav" className="md:hidden absolute top-6 right-6">
+          <a href="#header-nav" className="md:hidden absolute top-6 right-6">
             <X />
-          </Link>
+          </a>
         </nav>
-        <Link to="#header-menu" className="md:hidden"><Menu /></Link>
+        <a href="#header-menu" className="md:hidden"><Menu /></a>
       </div>
     </header>
   );

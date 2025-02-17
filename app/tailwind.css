@@ -63,6 +63,10 @@ body {
     color-scheme: dark;
   }
 
+  a.active {
+    @apply decoration-3 underline underline-offset-3;
+  }
+
   .custom-md {
     @apply dark:text-zinc-200;
   }
@@ -112,6 +116,10 @@ body {
     animation: blur linear both;
     animation-timeline: scroll();
     animation-range: 0 500px;
+}
+
+#header-menu {
+    @apply gap-8;
 }
 
 ::-webkit-scrollbar {
