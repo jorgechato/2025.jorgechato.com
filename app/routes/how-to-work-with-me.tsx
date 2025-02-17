@@ -1,5 +1,7 @@
 import type { MetaFunction } from '@remix-run/cloudflare';
 import type { Gist } from '~/utils/api';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { useLoaderData } from '@remix-run/react';
 import { Profile } from '~/utils/content';
 
 export const meta: MetaFunction = () => {
@@ -41,15 +43,11 @@ export async function loader() {
 }
 
 export default function Index() {
+  const data = useLoaderData<string>();
+
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="flex flex-col items-center gap-16">
-        <header className="flex flex-col items-center gap-9">
-          <h1 className="leading text-2xl font-bold text-zinc-800 dark:text-zinc-100">
-            How to work with me
-          </h1>
-        </header>
-      </div>
-    </div>
+    <section className="max-w-screen-md px-4 mb-24 object-center m-auto text-center select-none">
+      <MarkdownRenderer content={data} />
+    </section>
   );
 }
