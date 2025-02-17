@@ -13,13 +13,14 @@ export const meta: MetaFunction = () => {
 };
 
 export async function loader({ context }: LoaderFunctionArgs) {
+  let res: Response = null;
   try {
-    const res = await fetch('https://api.github.com/graphql', {
+    res = await fetch('https://api.github.com/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         // eslint-disable-next-line node/prefer-global/process
-        'Authorization': `bearer ${context.cloudflare.env.GITHUB_TOKEN || process.env.GITHUB_TOKEN}`,
+        'Authorization': `Bearer ${context.cloudflare.env.GITHUB_TOKEN || process.env.GITHUB_TOKEN}`,
       },
       body: JSON.stringify({
         query: `
@@ -40,12 +41,13 @@ export async function loader({ context }: LoaderFunctionArgs) {
     return body.data.user.gist.files[0].text;
   }
   catch (error) {
-    return error;
+    return `${error} [${res.status} ${res.statusText} ${context.cloudflare.env.GITHUB_OWNER} ${context.cloudflare.env.GITHUB_GIST}]`;
   }
 }
 
 export default function Index() {
   const data = useLoaderData<string>();
+  console.log(data);
 
   return (
     <section className="max-w-screen-md px-4 mb-24 object-center m-auto text-center select-none">
