@@ -59,3 +59,15 @@ export interface TravelData {
   map: null;
   trips: Trip[];
 }
+
+interface Gist {
+  data: {
+    user: {
+      gist: {
+        files: {
+          text: string;
+        }[];
+      };
+    };
+  };
+}

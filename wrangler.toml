@@ -5,3 +5,5 @@ pages_build_output_dir = "./build/client"
 
 [vars]
 NOMADLIST_USERNAME = "jorgechato"
+GITHUB_OWNER = "jorgechato"
+GITHUB_GIST = "7ac38bc8be549240ff1835f83cc74adf"

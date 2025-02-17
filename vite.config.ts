@@ -14,6 +14,8 @@ declare module '@remix-run/cloudflare' {
 export function loader({ context }: LoaderFunctionArgs) {
   const { env } = context.cloudflare;
   env.NOMADLIST_USERNAME;
+  env.GITHUB_OWNER;
+  env.GITHUB_GIST;
 }
 
 export default defineConfig({

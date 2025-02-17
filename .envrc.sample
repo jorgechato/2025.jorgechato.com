@@ -1,2 +1,5 @@
 export NOMADLIST_USERNAME=""
 export NOMADLIST_KEY=""
+export GITHUB_OWNER=""
+export GITHUB_GIST=""
+export GITHUB_TOKEN=""
