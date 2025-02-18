@@ -64,7 +64,7 @@ body {
   }
 
   a.active {
-    @apply decoration-3 underline underline-offset-3;
+    @apply decoration-2 underline underline-offset-4;
   }
 
   .custom-md {
