@@ -11,19 +11,25 @@ interface ThemeProviderState {
 const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('system');
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
-  const [isMounted, setIsMounted] = useState(false);
+  const isClient = typeof window !== 'undefined';
+
+  const getSystemTheme = () => {
+    if (!isClient) return 'light'; // Default to light in SSR
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
+
+  const getInitialTheme = (): Theme => {
+    if (!isClient) return 'system';
+    return (localStorage.getItem('theme') as Theme | null) || 'system';
+  };
+
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>(
+    theme === 'system' ? getSystemTheme() : theme
+  );
 
   useEffect(() => {
-    setIsMounted(true);
-
-    const getSystemTheme = () =>
-      window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-    const savedTheme = localStorage.getItem('theme') as Theme | null;
-    const initialTheme = savedTheme || 'system';
-    setTheme(initialTheme);
+    if (!isClient) return;
 
     const applyTheme = (currentTheme: Theme) => {
       const root = document.documentElement;
@@ -34,13 +40,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       root.classList.add(newTheme);
     };
 
-    applyTheme(initialTheme);
+    applyTheme(theme);
 
-    // Listen for system theme changes
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleSystemThemeChange = () => {
       if (theme === 'system') {
-        applyTheme('system');
+        const newSystemTheme = getSystemTheme();
+        setResolvedTheme(newSystemTheme);
+        document.documentElement.classList.remove('light', 'dark');
+        document.documentElement.classList.add(newSystemTheme);
       }
     };
 
@@ -48,32 +56,25 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     return () => {
       mediaQuery.removeEventListener('change', handleSystemThemeChange);
     };
-  }, []);
-
-  useEffect(() => {
-    if (!isMounted)
-      return;
-
-    localStorage.setItem('theme', theme);
-    const applyTheme = (currentTheme: Theme) => {
-      const root = document.documentElement;
-      root.classList.remove('light', 'dark');
-
-      const newTheme: 'light' | 'dark' = currentTheme === 'system'
-        ? window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark'
-          : 'light'
-        : currentTheme;
-
-      setResolvedTheme(newTheme);
-      root.classList.add(newTheme);
-    };
-
-    applyTheme(theme);
-  }, [theme, isMounted]);
+  }, [theme, isClient]);
 
   return (
-    <ThemeProviderContext.Provider value={{ theme, resolvedTheme, setTheme }}>
+    <ThemeProviderContext.Provider
+      value={{
+        theme,
+        resolvedTheme,
+        setTheme: (newTheme: Theme) => {
+          if (isClient) {
+            localStorage.setItem('theme', newTheme);
+          }
+          setTheme(newTheme);
+          if (newTheme !== 'system' && isClient) {
+            document.documentElement.classList.remove('light', 'dark');
+            document.documentElement.classList.add(newTheme);
+          }
+        },
+      }}
+    >
       {children}
     </ThemeProviderContext.Provider>
   );
