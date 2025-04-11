@@ -6,7 +6,7 @@ import { Model as Sakura } from '@/components/models/Sakura';
 import { Model as Soju } from '@/components/models/Soju';
 import { Model as Floor } from '@/components/models/Stones';
 import { Model as Torii } from '@/components/models/Torii';
-import { CameraControls, MeshPortalMaterial, OrbitControls, useTexture } from '@react-three/drei';
+import { CameraControls, MeshPortalMaterial, OrbitControls, Text, useTexture } from '@react-three/drei';
 import { Canvas, extend } from '@react-three/fiber';
 import { RoundedPlaneGeometry } from 'maath/geometry';
 import React from 'react';
@@ -69,6 +69,19 @@ function Frame({ name, bg, width = 1, height = GOLDENRATIO, children, ...props }
 
           {/* BG Color */}
           <color attach="background" args={[resolvedTheme === 'dark' ? '#27272a' : '#fff']} />
+
+          <Text
+            font="/fonts/Satoshi-Bold.woff"
+            fontSize={0.1}
+            position={[0, 0, 0]}
+            anchorX="center"
+            anchorY="middle"
+            material-color={resolvedTheme === 'dark' ? bg : 'black'}
+            outlineWidth={resolvedTheme === 'dark' ? 0 : 0.002}
+            outlineColor="black"
+          >
+            @jorgechato
+          </Text>
 
           <OrbitControls />
         </MeshPortalMaterial>
