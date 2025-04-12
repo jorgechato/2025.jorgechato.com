@@ -1,5 +1,8 @@
 {
   "HEADER": "Jorge",
   "NAME": "Jorge Chato Astrain",
-  "DESCRIPTION": "Entry point for my projects and ideas."
+  "AT": "@jorgechato",
+  "DESCRIPTION": "Entry point for my projects and ideas.",
+  "COLOR": "#fbbf24",
+  "IMAGE": "/profile.webp"
 }

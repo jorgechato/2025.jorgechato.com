@@ -12,7 +12,7 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <div className="flex items-center justify-center flex-col mb-24">
-      <ThreeD name="Jorge Chato Astrain" bg="#fbbf24" />
+      <ThreeD name={Profile.AT} bg={Profile.COLOR} />
     </div>
   );
 }

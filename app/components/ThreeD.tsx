@@ -10,6 +10,7 @@ import { CameraControls, MeshPortalMaterial, OrbitControls, Text, useTexture } f
 import { Canvas, extend } from '@react-three/fiber';
 import { RoundedPlaneGeometry } from 'maath/geometry';
 import React from 'react';
+import { Profile } from '~/utils/content';
 
 extend({ RoundedPlaneGeometry });
 
@@ -19,10 +20,9 @@ const ROUND = {
   outer: 0.05,
   inner: 0.05,
 };
-const URL = '/profile.webp';
 
-function FrameImage({ url, width, height, bg, scale }: { url: string; width: number; height: number; bg: string; scale: number[] }) {
-  const texture = useTexture(url);
+function FrameImage({ width, height, bg, scale }: { width: number; height: number; bg: string; scale: number[] }) {
+  const texture = useTexture(Profile.IMAGE);
 
   return (
     <mesh position={[0, 0.4, 0.001]}>
@@ -79,7 +79,7 @@ function Frame({ name, bg, width = 1, height = GOLDENRATIO, children, ...props }
             outlineWidth={resolvedTheme === 'dark' ? 0 : 0.002}
             outlineColor="black"
           >
-            @jorgechato
+            {name}
           </Text>
 
           <OrbitControls />
@@ -93,15 +93,13 @@ function Frame({ name, bg, width = 1, height = GOLDENRATIO, children, ...props }
       </mesh>
 
       {/* image */}
-      <FrameImage url={URL} width={0.5} height={0.5} scale={[0.5, 0.5]} bg={bg} />
+      <FrameImage width={0.5} height={0.5} scale={[0.5, 0.5]} bg={bg} />
     </mesh>
   );
 }
 
 // Main component that sets up the Canvas and includes our Square
 export function ThreeD({ name, bg }: { name: string; bg: string }) {
-  const { resolvedTheme } = useTheme();
-
   return (
     <div style={{ width: '100%', height: '80vh' }}>
       <Canvas camera={{ fov: 75, position: [0, 0, 1.5] }} gl={{ localClippingEnabled: true }} shadows>

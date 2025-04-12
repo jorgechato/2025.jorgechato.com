@@ -11,6 +11,7 @@ import {
   ScrollRestoration,
 } from '@remix-run/react';
 import './tailwind.css';
+import '@fontsource-variable/figtree';
 
 export const links: LinksFunction = () => [];
 
