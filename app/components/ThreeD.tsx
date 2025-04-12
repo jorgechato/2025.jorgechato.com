@@ -6,16 +6,20 @@ import { Model as Rooster } from '@/components/models/Rooster';
 import { Model as Sakura } from '@/components/models/Sakura';
 import { Model as Soju } from '@/components/models/Soju';
 import { Model as Torii } from '@/components/models/Torii';
-import { CameraControls, Center, MeshPortalMaterial, OrbitControls, RoundedBox, Text, Text3D, useTexture } from '@react-three/drei';
+import { CameraControls, Center, MeshPortalMaterial, OrbitControls, RoundedBox, Text3D, useTexture } from '@react-three/drei';
 import { Canvas, extend } from '@react-three/fiber';
 import { RoundedPlaneGeometry } from 'maath/geometry';
 import React from 'react';
+import * as THREE from 'three';
 import { Profile } from '~/utils/content';
 
 extend({ RoundedPlaneGeometry });
 
 const GOLDENRATIO = 1.61803398875;
 const ROUND = 0.05;
+const BLACK = '#27272a';
+const DARKER_BLACK = '#202023';
+const WHITE = '#d4d4d8';
 
 function FrameImage({ scale }: { scale: number[] }) {
   const texture = useTexture(Profile.IMAGE);
@@ -23,7 +27,11 @@ function FrameImage({ scale }: { scale: number[] }) {
   return (
     <mesh position={[0, 0.4, 0.001]}>
       <roundedPlaneGeometry args={[...scale, 0.25]} />
-      <meshBasicMaterial map={texture} toneMapped={false} />
+      <meshBasicMaterial
+        map={texture}
+        toneMapped={false}
+        side={THREE.FrontSide}
+      />
     </mesh>
   );
 }
@@ -40,6 +48,15 @@ function Frame({ name, bg, width = 1, height = GOLDENRATIO, children, ...props }
 
   return (
     <mesh {...props}>
+      {/* Light */}
+      <ambientLight intensity={1.5} />
+      <directionalLight
+        position={[-5, 1, 10]}
+        intensity={1.5}
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+      />
+
       {/* frame */}
       <mesh>
         <roundedPlaneGeometry args={[width, height, ROUND]} />
@@ -57,18 +74,24 @@ function Frame({ name, bg, width = 1, height = GOLDENRATIO, children, ...props }
           />
 
           {/* BG Color */}
-          <color attach="background" args={[resolvedTheme === 'dark' ? '#27272a' : '#fff']} />
+          <color attach="background" args={[resolvedTheme === 'dark' ? BLACK : 'white']} />
 
           <OrbitControls />
         </MeshPortalMaterial>
         <Center>
           <Text3D
             font="/figtree.json"
-            material-color={resolvedTheme === 'dark' ? bg : 'black'}
             size={0.06}
             height={0.025}
           >
             {name}
+            <meshStandardMaterial
+              color={resolvedTheme === 'dark' ? bg : BLACK}
+              metalness={0.1}
+              roughness={0.5}
+              castShadow
+              receiveShadow
+            />
           </Text3D>
         </Center>
       </mesh>
@@ -81,7 +104,12 @@ function Frame({ name, bg, width = 1, height = GOLDENRATIO, children, ...props }
           smoothness={4}
           position={[0, 0, -0.05]}
         >
-          <meshBasicMaterial attachArray="material" color={resolvedTheme === 'dark' ? bg : 'black'} />
+          <meshBasicMaterial
+            color={resolvedTheme === 'dark' ? DARKER_BLACK : WHITE}
+            metalness={0}
+            roughness={1} // max roughness → no reflections
+            side={THREE.FrontSide}
+          />
         </RoundedBox>
       </mesh>
 
