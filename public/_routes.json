@@ -1,5 +1,12 @@
 {
   "version": 1,
   "include": ["/*"],
-  "exclude": ["/favicon.ico", "/logo.webp", "/*.webp", "/*.glb", "/*.png"]
+  "exclude": [
+    "/favicon.ico",
+    "/logo.webp",
+    "/*.webp",
+    "/*.glb",
+    "/*.png",
+    "/figtree.json"
+  ]
 }

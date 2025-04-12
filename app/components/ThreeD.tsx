@@ -6,7 +6,7 @@ import { Model as Rooster } from '@/components/models/Rooster';
 import { Model as Sakura } from '@/components/models/Sakura';
 import { Model as Soju } from '@/components/models/Soju';
 import { Model as Torii } from '@/components/models/Torii';
-import { CameraControls, MeshPortalMaterial, OrbitControls, Text, useTexture } from '@react-three/drei';
+import { CameraControls, Center, MeshPortalMaterial, OrbitControls, RoundedBox, Text, Text3D, useTexture } from '@react-three/drei';
 import { Canvas, extend } from '@react-three/fiber';
 import { RoundedPlaneGeometry } from 'maath/geometry';
 import React from 'react';
@@ -15,26 +15,15 @@ import { Profile } from '~/utils/content';
 extend({ RoundedPlaneGeometry });
 
 const GOLDENRATIO = 1.61803398875;
-const PADDING = 0.02;
-const ROUND = {
-  outer: 0.05,
-  inner: 0.05,
-};
+const ROUND = 0.05;
 
-function FrameImage({ width, height, bg, scale }: { width: number; height: number; bg: string; scale: number[] }) {
+function FrameImage({ scale }: { scale: number[] }) {
   const texture = useTexture(Profile.IMAGE);
 
   return (
     <mesh position={[0, 0.4, 0.001]}>
-      <mesh>
-        <roundedPlaneGeometry args={[width + PADDING, height + PADDING, 0.25]} />
-        <meshBasicMaterial color={bg} />
-      </mesh>
-
-      <mesh position={[0, 0, 0.001]}>
-        <roundedPlaneGeometry args={[...scale, 0.25]} />
-        <meshBasicMaterial map={texture} toneMapped={false} />
-      </mesh>
+      <roundedPlaneGeometry args={[...scale, 0.25]} />
+      <meshBasicMaterial map={texture} toneMapped={false} />
     </mesh>
   );
 }
@@ -53,7 +42,7 @@ function Frame({ name, bg, width = 1, height = GOLDENRATIO, children, ...props }
     <mesh {...props}>
       {/* frame */}
       <mesh>
-        <roundedPlaneGeometry args={[width, height, ROUND.inner]} />
+        <roundedPlaneGeometry args={[width, height, ROUND]} />
         <MeshPortalMaterial>
           {children}
 
@@ -70,26 +59,30 @@ function Frame({ name, bg, width = 1, height = GOLDENRATIO, children, ...props }
           {/* BG Color */}
           <color attach="background" args={[resolvedTheme === 'dark' ? '#27272a' : '#fff']} />
 
-          <Text
-            fontSize={0.09}
-            position={[0, 0.01, 0]}
-            anchorX="center"
-            anchorY="middle"
-            material-color={resolvedTheme === 'dark' ? bg : 'black'}
-            outlineWidth={resolvedTheme === 'dark' ? 0 : 0.002}
-            outlineColor="black"
-          >
-            {name}
-          </Text>
-
           <OrbitControls />
         </MeshPortalMaterial>
+        <Center>
+          <Text3D
+            font="/figtree.json"
+            material-color={resolvedTheme === 'dark' ? bg : 'black'}
+            size={0.06}
+            height={0.025}
+          >
+            {name}
+          </Text3D>
+        </Center>
       </mesh>
 
       {/* border */}
-      <mesh position={[0, 0, -0.001]}>
-        <roundedPlaneGeometry args={[width + PADDING, height + PADDING, ROUND.outer]} />
-        <meshBasicMaterial color={bg} />
+      <mesh>
+        <RoundedBox
+          args={[width, height, 0]} // width, height, depth
+          radius={ROUND}
+          smoothness={4}
+          position={[0, 0, -0.05]}
+        >
+          <meshBasicMaterial attachArray="material" color={resolvedTheme === 'dark' ? bg : 'black'} />
+        </RoundedBox>
       </mesh>
 
       {/* image */}
