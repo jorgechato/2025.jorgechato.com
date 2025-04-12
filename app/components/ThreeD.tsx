@@ -1,7 +1,6 @@
 import { useTheme } from '@/components/core/ThemeProvider';
 import { Model as Bridge } from '@/components/models/Bridge';
 import { Model as Door } from '@/components/models/Door';
-// import { Model as Floor } from '@/components/models/Stones';
 import { Model as Floor } from '@/components/models/Island';
 import { Model as Rooster } from '@/components/models/Rooster';
 import { Model as Sakura } from '@/components/models/Sakura';
@@ -107,13 +106,13 @@ export function ThreeD({ name, bg }: { name: string; bg: string }) {
     <div style={{ width: '100%', height: '80vh' }}>
       <Canvas camera={{ fov: 75, position: [0, 0, 1.5] }} gl={{ localClippingEnabled: true }} shadows>
         <Frame name={name} bg={bg} width={1} height={GOLDENRATIO}>
-          <Floor position={[0, -0.7, -0.2]} scale={[0.6, 0.6, 0.6]} rotation={[0, -Math.PI / 2, 0]} castShadow />
-          <Rooster position={[-0.3, -0.73, -0.3]} scale={[0.025, 0.025, 0.025]} rotation={[0, -Math.PI / 2 + 0.6, 0]} castShadow />
-          <Torii position={[0.65, -0.38, -0.20]} scale={[0.5, 0.5, 0.5]} rotation={[0, Math.PI, 0]} castShadow />
-          <Door position={[0.07, -0.32, -0.3]} scale={[0.009, 0.009, 0.005]} rotation={[0, Math.PI / 7, 0]} castShadow />
-          <Sakura position={[-0.4, -0.75, -0.3]} scale={[0.002, 0.002, 0.002]} rotation={[0, -Math.PI / 3, 0]} castShadow />
-          <Soju position={[0.29, -0.56, -0.24]} scale={[0.05, 0.05, 0.05]} rotation={[0, Math.PI, 0]} castShadow />
-          <Bridge position={[0.39, -0.49, -0.15]} scale={[0.00026, 0.0002, 0.0002]} rotation={[0, 0.1, -0.25]} castShadow />
+          <Floor position={[0, -0.7, -0.2]} scale={[0.6, 0.6, 0.6]} rotation={[0, -Math.PI / 2, 0]} />
+          <Rooster position={[-0.3, -0.73, -0.3]} scale={[0.025, 0.025, 0.025]} rotation={[0, -Math.PI / 2 + 0.6, 0]} />
+          <Torii position={[0.65, -0.38, -0.20]} scale={[0.5, 0.5, 0.5]} rotation={[0, Math.PI, 0]} />
+          <Door position={[0.07, -0.32, -0.3]} scale={[0.009, 0.009, 0.005]} rotation={[0, Math.PI / 7, 0]} />
+          <Sakura position={[-0.4, -0.75, -0.3]} scale={[0.002, 0.002, 0.002]} rotation={[0, -Math.PI / 3, 0]} />
+          <Soju position={[0.29, -0.56, -0.24]} scale={[0.05, 0.05, 0.05]} rotation={[0, Math.PI, 0]} />
+          <Bridge position={[0.39, -0.49, -0.15]} scale={[0.00026, 0.0002, 0.0002]} rotation={[0, 0.1, -0.25]} />
         </Frame>
 
         <CameraControls

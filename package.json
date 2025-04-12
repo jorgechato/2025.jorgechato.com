@@ -12,7 +12,8 @@
     "typecheck": "tsc",
     "typegen": "wrangler types",
     "preview": "pnpm run build && wrangler pages dev",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "generate-models": "find public -name '*.glb' -exec sh -c 'npx gltfjsx \"$1\" -t --types --keepnames --shadows -o \"./app/components/models/$(basename \"$1\" .glb).tsx\"' _ {} \\;"
   },
   "dependencies": {
     "@react-three/drei": "^10.0.6",
