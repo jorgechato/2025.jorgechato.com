@@ -10,10 +10,10 @@ import React from 'react';
 
 type GLTFResult = GLTF & {
   nodes: {
-    Bridge: THREE.Mesh;
+    Wood_Bridge1: THREE.Mesh;
   };
   materials: {
-    Diffuse_color: THREE.MeshStandardMaterial;
+    lambert3SG: THREE.MeshStandardMaterial;
   };
   animations: GLTFAction[];
 };
@@ -22,7 +22,7 @@ export function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/models/Bridge.glb') as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Bridge.geometry} material={materials.Diffuse_color} scale={100} />
+      <mesh geometry={nodes.Wood_Bridge1.geometry} material={materials.lambert3SG} />
     </group>
   );
 }
