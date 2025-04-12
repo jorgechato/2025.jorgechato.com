@@ -60,7 +60,7 @@ function Frame({ name, bg, width = 1, height = GOLDENRATIO, children, ...props }
           {/* Light */}
           <ambientLight intensity={resolvedTheme === 'dark' ? 0.8 : 1.5} />
           <directionalLight
-            position={[5, 5, 5]}
+            position={[4, 6, 5]}
             intensity={resolvedTheme === 'dark' ? 0.8 : 1.5}
             castShadow
             shadow-mapSize-width={1024}
