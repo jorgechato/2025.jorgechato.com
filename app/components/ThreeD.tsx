@@ -2,6 +2,7 @@ import { useTheme } from '@/components/core/ThemeProvider';
 import { Model as Bridge } from '@/components/models/Bridge';
 import { Model as Door } from '@/components/models/Door';
 import { Model as Floor } from '@/components/models/Island';
+import { Model as Bike } from '@/components/models/Motorcycle';
 import { Model as Rooster } from '@/components/models/Rooster';
 import { Model as Sakura } from '@/components/models/Sakura';
 import { Model as Soju } from '@/components/models/Soju';
@@ -215,6 +216,7 @@ export function ThreeD({ name, bg }: { name: string; bg: string }) {
           <Rooster position={[-0.4, -0.73, -0.3]} scale={[0.025, 0.025, 0.025]} rotation={[0, -Math.PI / 2 + 0.6, 0]} />
           <Torii position={[0.55, -0.38, -0.20]} scale={[0.5, 0.5, 0.5]} rotation={[0, Math.PI, 0]} />
           <Door position={[-0.07, -0.32, -0.3]} scale={[0.009, 0.009, 0.005]} rotation={[0, Math.PI / 7, 0]} />
+          <Bike position={[-0.25, -0.381, -0.1]} scale={[0.009, 0.009, 0.005]} rotation={[0.15, -1.8, 0]} />
           <Sakura position={[-0.5, -0.75, -0.3]} scale={[0.002, 0.002, 0.002]} rotation={[0, -Math.PI / 3, 0]} />
           <Soju position={[0.19, -0.56, -0.24]} scale={[0.05, 0.05, 0.05]} rotation={[0, Math.PI, 0]} />
           <Bridge position={[0.29, -0.49, -0.15]} scale={[0.00026, 0.0002, 0.0002]} rotation={[0, 0.1, -0.25]} />
