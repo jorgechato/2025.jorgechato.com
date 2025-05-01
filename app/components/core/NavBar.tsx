@@ -42,10 +42,10 @@ export default function NavBar() {
               {item.name}
             </NavLink>
           ))}
-          {getSNS(true).map(item => (
+          {getSNS(true).map((item, index) => (
             <NavLink
               key={item.name}
-              className="hover:opacity-100 transition-opacity duration-300 opacity-80 cursor-pointer"
+              className={`hover:opacity-100 transition-opacity duration-300 opacity-80 cursor-pointer -mx-2 ${index === 0 ? 'ml-0' : ''}`}
               to={item.url}
               target="_blank"
               onClick={closeMenu} // Close the menu when a link is clicked
