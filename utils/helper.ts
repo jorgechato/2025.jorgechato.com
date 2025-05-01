@@ -1,10 +1,12 @@
-import { Github, Linkedin, Newspaper, Twitter } from 'lucide-react';
+import { GithubIcon } from '@/icons/brand/github';
+import { LinkedinIcon } from '@/icons/brand/linkedin';
+import { XIcon } from '@/icons/brand/x';
 
-export const SOCIAL_MEDIA: Record<string, typeof Newspaper> = {
-  github: Github,
-  linkedin: Linkedin,
-  twitter: Twitter,
-  substack: Newspaper,
+export const SOCIAL_MEDIA: Record<string, typeof GithubIcon> = {
+  github: GithubIcon,
+  linkedin: LinkedinIcon,
+  x: XIcon,
+  // substack: Newspaper,
 };
 
 export interface LinkType {
@@ -14,5 +16,5 @@ export interface LinkType {
 }
 
 export interface SnSType extends LinkType {
-  icon: typeof Newspaper;
+  icon: typeof GithubIcon;
 }
