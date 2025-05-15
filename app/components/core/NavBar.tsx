@@ -18,9 +18,9 @@ export default function NavBar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-16">
         <Link
           to="/"
-          className="relative z-10 flex items-center gap-4 flex-row"
+          className="relative z-10 flex items-center gap-2 flex-row"
         >
-          <img src="/logo.webp" loading="lazy" className="w-5" alt="Logo" />
+          <img src="/logo.webp" loading="lazy" className="w-9" alt="Logo" />
           <h2 className="text-xl font-bold">
             {Profile.HEADER}
           </h2>
