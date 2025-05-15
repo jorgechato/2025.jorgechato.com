@@ -13,5 +13,10 @@
     "name": "Where",
     "url": "/where-i-am-today",
     "inHeader": true
+  },
+  {
+    "name": "Status Page",
+    "url": "https://status.jrg.tools/",
+    "inHeader": false
   }
 ]
