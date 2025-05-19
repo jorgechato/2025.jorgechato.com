@@ -25,7 +25,7 @@
     "@remix-run/react": "^2.16.5",
     "country-flag-emoji": "^1.0.3",
     "isbot": "^5.1.26",
-    "lucide-react": "^0.477.0",
+    "lucide-react": "^0.511.0",
     "luxon": "^3.6.1",
     "maath": "^0.10.8",
     "markdown-to-jsx": "^7.7.4",
