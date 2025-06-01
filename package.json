@@ -21,7 +21,7 @@
     "@react-three/fiber": "^8.18.0",
     "@remix-run/cloudflare": "^2.16.5",
     "@remix-run/cloudflare-pages": "^2.16.5",
-    "@remix-run/node": "^2.16.5",
+    "@remix-run/node": "^2.16.8",
     "@remix-run/react": "^2.16.5",
     "country-flag-emoji": "^1.0.3",
     "isbot": "^5.1.26",
