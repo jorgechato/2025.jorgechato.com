@@ -3,7 +3,7 @@ import { getSiteMap, getSNS, Profile } from '~/utils/content';
 
 export default function Footer() {
   return (
-    <footer className="bg-zinc-50/60 dark:bg-zinc-900/30">
+    <footer className="bg-zinc-100/20 dark:bg-zinc-900/30">
       <div className="mx-auto w-full max-w-screen-xl p-4 px-6 py-6 lg:py-8">
         <div className="flex flex-row flex-wrap gap-16 sm:gap-8 justify-center">
           <div>
