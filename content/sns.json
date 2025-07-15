@@ -1,5 +1,10 @@
 [
   {
+    "name": "Newsletter",
+    "url": "https://elmailde.jrg.tools",
+    "inHeader": true
+  },
+  {
     "name": "GitHub",
     "url": "https://github.com/jorgechato",
     "inHeader": true
@@ -7,7 +12,7 @@
   {
     "name": "LinkedIn",
     "url": "https://www.linkedin.com/in/jorgechato/",
-    "inHeader": true
+    "inHeader": false
   },
   {
     "name": "X",

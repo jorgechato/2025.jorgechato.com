@@ -1,12 +1,13 @@
 import { GithubIcon } from '@/icons/brand/github';
 import { LinkedinIcon } from '@/icons/brand/linkedin';
 import { XIcon } from '@/icons/brand/x';
+import { NewsletterIcon } from '@/icons/newsletter';
 
 export const SOCIAL_MEDIA: Record<string, typeof GithubIcon> = {
   github: GithubIcon,
   linkedin: LinkedinIcon,
   x: XIcon,
-  // substack: Newspaper,
+  newsletter: NewsletterIcon,
 };
 
 export interface LinkType {
