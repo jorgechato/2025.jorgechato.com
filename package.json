@@ -22,7 +22,7 @@
     "@remix-run/cloudflare": "^2.16.5",
     "@remix-run/cloudflare-pages": "^2.16.5",
     "@remix-run/node": "^2.16.5",
-    "@remix-run/react": "^2.16.5",
+    "@remix-run/react": "^2.17.0",
     "country-flag-emoji": "^1.0.3",
     "isbot": "^5.1.26",
     "lucide-react": "^0.511.0",
